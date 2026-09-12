@@ -1,0 +1,1 @@
+export const UPDATE_MAIN_MENU = 'UPDATE_MAIN_MENU'

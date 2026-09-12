@@ -1,0 +1,11 @@
+.menu {
+  width: 250px;
+  height: 100vh;
+  background: #dcdcdc;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.menu_close {
+  width: 70px;
+}
