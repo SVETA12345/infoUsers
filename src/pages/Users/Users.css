@@ -1,0 +1,26 @@
+.button__title {
+  background: #34547a;
+  text-align: center;
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.button__title:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.main {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.table__container {
+  margin: 0 auto;
+  max-width: 90%;
+}

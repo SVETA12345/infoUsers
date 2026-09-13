@@ -1,0 +1,10 @@
+.app {
+  background: #fff8dc;
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+.app__container {
+  display: grid;
+  grid-template-columns: 250px auto;
+}

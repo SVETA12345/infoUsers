@@ -14,6 +14,8 @@ export default makeStyles((theme) => ({
     },
   },
   appBar: {
+    height: 64,
+    minHeight: 64,
     width: "100vw",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["margin"], {

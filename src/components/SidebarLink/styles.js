@@ -11,7 +11,7 @@ export default makeStyles(theme => ({
     externalLink: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+
         textDecoration: 'none'
     },
     linkActive: {
