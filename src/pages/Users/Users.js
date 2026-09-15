@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux';
 import './Users.css'
 import PageTitle from '../../components/PageTitle/PageTitle'
 import UserTable from '../../components/UserTable/UserTable'
-import { departamentsData } from '../../constantsData'
+import { DEPARTAMENTS_DATA } from '../../constantsData'
 
 
 function Users() {
+    /* С сервером реализовавыла бы серверные поиск и пагинацию */
+
     const usersData = useSelector(state => state.users)
     return (<main className="main">
         <PageTitle title="Список пользователей" >
@@ -19,7 +21,7 @@ function Users() {
         </PageTitle>
 
         <div className="table__container">
-            <UserTable usersData={usersData.map((item) => { return { ...item, department: departamentsData[item.department_id].name } })} />
+            <UserTable usersData={usersData.map((item) => { return { ...item, department: DEPARTAMENTS_DATA[item.department_id].name } })} />
         </div>
 
 

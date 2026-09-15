@@ -6,12 +6,14 @@ import {
 import { Typography, IconButton, Tooltip, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { OPEN_POPUP, CLOSE_POPUP } from '../../services/constants/popupData'
+import { useNavigate } from 'react-router-dom';
+import { openPopup, closePopup } from '../../services/actions/popupData';
 import { DELETE_BY_ID_USERS } from '../../services/constants/users'
 import ModalConfirmation from '../ModalConfirmation/ModalConfirmation'
 
 export default function UsersTable({ usersData = [] }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const columns = useMemo(
         () => [
             {
@@ -77,7 +79,7 @@ export default function UsersTable({ usersData = [] }) {
             pagination: { pageSize: 10, pageIndex: 0 },
         },
         muiTableBodyRowProps: ({ row }) => ({
-            onClick: () => console.log('Clicked row:', row.original),
+            onClick: () => navigate(`${row.original.id}`),
             sx: { cursor: 'pointer' },
         }),
 
@@ -88,23 +90,15 @@ export default function UsersTable({ usersData = [] }) {
             const handleDelete = () => {
                 const selected = selectedRows.map((r) => r.original);
                 const count = selected.length;
-                dispatch({
-                    type: OPEN_POPUP,
-                    payload: {
-                        componentPopup: <ModalConfirmation title={'Подтвердите удаление'}
-                            question={`Удалить ${count} пользовател${count === 1 ? 'я' : 'ей'}?
-                                `} handleClickButton={() => {
-                                dispatch({
-                                    type: DELETE_BY_ID_USERS,
-                                    payload: { usersDelete: selected }
-                                })
-                                dispatch({
-                                    type: CLOSE_POPUP,
-                                })
-                                table.resetRowSelection();
-                            }} />
-                    }
-                })
+                dispatch(openPopup(ModalConfirmation, {
+                    title: "Подтвердите удаление",
+                    question: `Удалить ${count} пользовател${count === 1 ? "я" : "ей"}?`,
+                    handleClickButton: () => {
+                        dispatch({ type: DELETE_BY_ID_USERS, payload: { usersDelete: selected } });
+                        dispatch(closePopup());
+                        table.resetRowSelection();
+                    },
+                }))
             };
             const totalFound = table.getPrePaginationRowModel().rows.length;
             return (

@@ -1,1 +1,3 @@
 export const DELETE_BY_ID_USERS = 'DELETE_BY_ID_USERS'
+export const UPDATE_USER_BY_ID = 'UPDATE_USER_BY_ID'
+export const CREATE_USER = 'CREATE_USER'

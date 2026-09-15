@@ -1,26 +1,29 @@
-import { OPEN_POPUP, CLOSE_POPUP } from '../constants/popupData'
+// reducers/popupDataReducer.js
+import { OPEN_POPUP, CLOSE_POPUP } from "../constants/popupData";
+
 const initialState = {
     isOpenPopup: false,
-    componentPopup: null
+    component: null,
+    props: {},
 };
 
 export const popupDataReducer = (state = initialState, action) => {
     switch (action.type) {
-        case OPEN_POPUP: {
+        case OPEN_POPUP:
             return {
                 ...state,
                 isOpenPopup: true,
-                ...action.payload
-            }
-        }
-        case CLOSE_POPUP: {
+                component: action.payload.component,
+                props: action.payload.props ?? {},
+            };
+        case CLOSE_POPUP:
             return {
+                ...state,
                 isOpenPopup: false,
-                componentPopup: null
-            }
-        }
-        default: {
+                component: null,
+                props: {},
+            };
+        default:
             return state;
-        }
     }
 };
